@@ -1,6 +1,7 @@
 import MainSlider from './modules/slider/slider-main';
 import MiniSlider from './modules/slider/slider-mini';
 import VideoPlayer from './modules/playVideo';
+import Difference from './modules/difference';
 
 window.addEventListener('DOMContentLoaded', () => {
     const slider = new MainSlider({btns: '.next', container: '.page'});
@@ -8,7 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Первый слайдер
     const showUpSlider = new MiniSlider({
-        container: '.showup__content-slider', // это контейнер где внутри карточки со слайдерами
+        container: '.showup__content-slider',
         prev: '.showup__prev',
         next: '.showup__next',
         activeClass: 'card-active',
@@ -17,10 +18,10 @@ window.addEventListener('DOMContentLoaded', () => {
     showUpSlider.init();
 
     // Второй слайдер
-    const modulesSlider = new MiniSlider({ // Обрати внимание что класс ОДИН И ТОТ ЖЕ, но ЭКЗЕМПЛЯРЫ классов разные
+    const modulesSlider = new MiniSlider({
         container: '.modules__content-slider',
         prev: '.modules__info-btns .slick-prev',
-        next: '.modules__info-btns .slick-next', // Все эти классы были взяты из верстки
+        next: '.modules__info-btns .slick-next', 
         activeClass: 'card-active',
         animate: true,
         autoplay: true
@@ -28,19 +29,20 @@ window.addEventListener('DOMContentLoaded', () => {
     modulesSlider.init();
 
     // Третий слайдер
-    const feedSlider = new MiniSlider({ // Назовем feed, потому что последний из слайдеров служит отоброжением отзывов клиентов
+    const feedSlider = new MiniSlider({
         container: '.feed__slider',
         prev: '.feed__slider .slick-prev',
         next: '.feed__slider .slick-next',
         activeClass: 'feed__item-active'
     });
     feedSlider.init();
-    /* В этом слайдере у нас БАГ, верстка иногда выходит. У нас есть див контейнер где находятся все слайды с классом feed__slider,
-и прям в нем находятся кнопки для переключения. И так как мы внутри контейнера получали всех детей, кнопки ТОЖЕ СЧИТАЮТСЯ КАК ОТДЕЛЬНЫЕ
-СЛАЙДЫ. ЭТО ОЧЕНЬ ВАЖНО ! Когда мы нажимаем на кнопку вперед, мы помни что первый слайд уходит на место последнего и если протыкать
-все слайды, то в какой-то момент кнопки станут первым элементами !!! Но сами кнопки не двигаются как слайды потому что у них стоит
-position: absolute ! */
 
     const player = new VideoPlayer('.showup .play', '.overlay');
     player.init();
+
+    /* Новый способ вызывать метод */
+    new Difference(".officerold", ".officernew", ".officer__card-item").init();
+/* мы просто в наш объект передаем свойства и рас уж это объект мы к нему используем метод, но такой синтаксис можно
+использовать если мы только хотим один метод вызывать для нашего объекта и больше мы не будем иметь доступ к экземпляру
+класса */
 });
