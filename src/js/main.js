@@ -2,6 +2,7 @@ import MainSlider from './modules/slider/slider-main';
 import MiniSlider from './modules/slider/slider-mini';
 import VideoPlayer from './modules/playVideo';
 import Difference from './modules/difference';
+import Form from './modules/forms';
 
 window.addEventListener('DOMContentLoaded', () => {
     const slider = new MainSlider({btns: '.next', container: '.page'});
@@ -40,9 +41,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const player = new VideoPlayer('.showup .play', '.overlay');
     player.init();
 
-    /* Новый способ вызывать метод */
+    // Новый способ вызывать метод
     new Difference(".officerold", ".officernew", ".officer__card-item").init();
-/* мы просто в наш объект передаем свойства и рас уж это объект мы к нему используем метод, но такой синтаксис можно
-использовать если мы только хотим один метод вызывать для нашего объекта и больше мы не будем иметь доступ к экземпляру
-класса */
+
+    new Form('.form').init(); // вызываем один раз по этому таким способом
 });
