@@ -4,6 +4,13 @@ import VideoPlayer from './modules/playVideo';
 import Difference from './modules/difference';
 import Form from './modules/forms';
 
+/*  Все эти ошибки на второй страницы из-за которых мы обращаемся к try catch связанны с тем что мы напрямую не общаемся
+с какими-то элементами и их не модифицируем, например модуль forms.js, мы пытаемся создать класс new Form('.form').init(); 
+в нашем main.js, те css класс form и вызвать метод инит
+    Потом мы смотрим что в формс у нас есть такой свойство с селектором this.forms = document.querySelectorAll(forms);, 
+и так как на страницу у нас нет такого класса том мы this.forms просто помещаем пустой массив, то дальше мы можем его использовать
+в тех действиях которые нам нужны.  */
+
 window.addEventListener('DOMContentLoaded', () => {
     const slider = new MainSlider({btns: '.next', container: '.page'});
     slider.render();
@@ -41,8 +48,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const player = new VideoPlayer('.showup .play', '.overlay');
     player.init();
 
-    // Новый способ вызывать метод
     new Difference(".officerold", ".officernew", ".officer__card-item").init();
 
-    new Form('.form').init(); // вызываем один раз по этому таким способом
+    new Form('.form').init(); 
 });

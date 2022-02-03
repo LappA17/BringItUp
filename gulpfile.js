@@ -57,7 +57,7 @@ gulp.task("watch", () => {
             baseDir: "./dist/",
             serveStaticOptions: {
                 extensions: ["html"]
-            }
+            }//  Благодаря этому коду у нас запускается все html в папке dist
         },
 		port: 4000,
 		notify: true
