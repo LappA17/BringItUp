@@ -3,6 +3,11 @@ import MiniSlider from './modules/slider/slider-mini';
 import VideoPlayer from './modules/playVideo';
 import Difference from './modules/difference';
 import Form from './modules/forms';
+import ShowInfo from './modules/showInfo';
+import Download from './modules/download';
+
+/* В самом конце Ваня запустил команду в терминал что бы все наши скрипты правильно скомпилировались gulp build-prod-js. 
+Теперь в папке дист будет полностью оптимизированная версия нашего продукта */
 
 window.addEventListener('DOMContentLoaded', () => {
     const slider = new MainSlider({btns: '.next', container: '.page'});
@@ -42,13 +47,15 @@ window.addEventListener('DOMContentLoaded', () => {
     feedSlider.init();
 
     // Плеер на первой странице
-    new VideoPlayer('.showup .play', '.overlay').init(); // убрали переменую плеер и сразу добавили инит как метод
+    new VideoPlayer('.showup .play', '.overlay').init(); 
+    //Плеер на второй
     new VideoPlayer('.module__video-item .play', '.overlay').init();
-/* Это будут два разных ВИДЕОПЛЕЕРА с разныи методами инит 
-Внутри этого класса '.module__video-item четко будет кнопка play ЧТО БЫ ЕСЛИ ВДРУГ У НАС ГДЕ ТО БУДЕТ КЛАСС ПЛЕЙ ЧТО БЫ ОН НЕ ПЕРЕСИКАЛСЯ
-С ЭТИМ  ФУНКЦИОНАЛОМ*/
 
     new Difference(".officerold", ".officernew", ".officer__card-item").init();
 
     new Form('.form').init(); 
+
+    new ShowInfo('.plus__content').init(); /* plus content будет тригером при клике на кнопку, он находится в блоке plus */
+
+    new Download('.download').init(); // селектор кнопки передаем
 });
